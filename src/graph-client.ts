@@ -71,4 +71,94 @@ export class GraphClient {
         const response = await this.request("GET", path);
         return await response.json();
     }
+
+    // ═════════════════════════════════════════════
+    // SHAREPOINT LIST MANAGEMENT
+    // ═════════════════════════════════════════════
+
+    /**
+     * Lists all SharePoint lists in a site.
+     */
+    async listLists(siteId: string): Promise<any> {
+        const response = await this.request("GET", `/sites/${siteId}/lists`);
+        return await response.json();
+    }
+
+    /**
+     * Creates a new SharePoint list with columns.
+     */
+    async createList(siteId: string, displayName: string, columns: Array<{ name: string; type: string; description?: string }>): Promise<any> {
+        const columnDefs = columns.map((col) => {
+            const base: Record<string, unknown> = {
+                name: col.name,
+                description: col.description || "",
+                enforceUniqueValues: false,
+            };
+            switch (col.type.toLowerCase()) {
+                case "text":
+                    base.text = { allowMultipleLines: false, maxLength: 255 };
+                    break;
+                case "multiline":
+                    base.text = { allowMultipleLines: true, maxLength: 5000 };
+                    break;
+                case "number":
+                    base.number = {};
+                    break;
+                case "datetime":
+                    base.dateTime = { format: "dateOnly" };
+                    break;
+                case "boolean":
+                    base.boolean = {};
+                    break;
+                case "choice":
+                    base.choice = { choices: ["Option 1", "Option 2", "Option 3"] };
+                    break;
+                default:
+                    base.text = { allowMultipleLines: false, maxLength: 255 };
+            }
+            return base;
+        });
+
+        const body = {
+            displayName,
+            list: { template: "genericList" },
+            columns: columnDefs,
+        };
+
+        const response = await this.request("POST", `/sites/${siteId}/lists`, body);
+        return await response.json();
+    }
+
+    /**
+     * Gets items from a SharePoint list.
+     */
+    async getListItems(siteId: string, listId: string, top?: number): Promise<any> {
+        const query = top ? `?$top=${top}&$expand=fields` : "?$expand=fields";
+        const response = await this.request("GET", `/sites/${siteId}/lists/${listId}/items${query}`);
+        return await response.json();
+    }
+
+    /**
+     * Creates a new item in a SharePoint list.
+     */
+    async createListItem(siteId: string, listId: string, fields: Record<string, unknown>): Promise<any> {
+        const body = { fields };
+        const response = await this.request("POST", `/sites/${siteId}/lists/${listId}/items`, body);
+        return await response.json();
+    }
+
+    /**
+     * Updates an item in a SharePoint list.
+     */
+    async updateListItem(siteId: string, listId: string, itemId: string, fields: Record<string, unknown>): Promise<any> {
+        const response = await this.request("PATCH", `/sites/${siteId}/lists/${listId}/items/${itemId}/fields`, fields);
+        return await response.json();
+    }
+
+    /**
+     * Deletes an item from a SharePoint list.
+     */
+    async deleteListItem(siteId: string, listId: string, itemId: string): Promise<void> {
+        await this.request("DELETE", `/sites/${siteId}/lists/${listId}/items/${itemId}`);
+    }
 }

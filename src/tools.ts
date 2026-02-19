@@ -995,4 +995,232 @@ export function registerTools(server: McpServer, client: DataverseClient, graphC
             }
         }
     );
+
+    // ═════════════════════════════════════════════
+    // SHAREPOINT LIST MANAGEMENT TOOLS
+    // ═════════════════════════════════════════════
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_sharepoint_list_lists
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_sharepoint_list_lists",
+        "Lists all SharePoint lists in a site. Returns list names, IDs, and templates.",
+        {
+            siteId: z.string().describe("The ID of the SharePoint site."),
+        },
+        async ({ siteId }) => {
+            try {
+                const lists = await graphClient.listLists(siteId);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(lists, null, 2),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error listing lists: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_sharepoint_create_list
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_sharepoint_create_list",
+        "Creates a new SharePoint list with custom columns. Column types: text, multiline, number, datetime, boolean, choice.",
+        {
+            siteId: z.string().describe("The ID of the SharePoint site."),
+            displayName: z.string().describe("Display name for the list (e.g., 'Employees', 'Leave Requests')."),
+            columns: z.string().describe("JSON array of column definitions. Each object: {name, type, description}. Types: text, multiline, number, datetime, boolean, choice. Example: '[{\"name\":\"Department\",\"type\":\"text\"},{\"name\":\"Salary\",\"type\":\"number\"}]'"),
+        },
+        async ({ siteId, displayName, columns }) => {
+            try {
+                const columnDefs = JSON.parse(columns);
+                const result = await graphClient.createList(siteId, displayName, columnDefs);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(
+                                {
+                                    success: true,
+                                    message: `List '${displayName}' created successfully`,
+                                    listId: result.id,
+                                    displayName: result.displayName,
+                                    webUrl: result.webUrl,
+                                },
+                                null,
+                                2
+                            ),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error creating list: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_sharepoint_get_list_items
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_sharepoint_get_list_items",
+        "Gets all items from a SharePoint list. Returns item IDs and field values.",
+        {
+            siteId: z.string().describe("The ID of the SharePoint site."),
+            listId: z.string().describe("The ID or display name of the SharePoint list."),
+            top: z.number().optional().describe("Maximum number of items to return (default: all)."),
+        },
+        async ({ siteId, listId, top }) => {
+            try {
+                const items = await graphClient.getListItems(siteId, listId, top);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(items, null, 2),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error getting list items: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_sharepoint_create_list_item
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_sharepoint_create_list_item",
+        "Creates a new item in a SharePoint list. Provide field values as a JSON object.",
+        {
+            siteId: z.string().describe("The ID of the SharePoint site."),
+            listId: z.string().describe("The ID or display name of the SharePoint list."),
+            fields: z.string().describe("JSON string of field values. Keys are column names, values are the data. Example: '{\"Title\":\"John\",\"Department\":\"IT\"}'"),
+        },
+        async ({ siteId, listId, fields }) => {
+            try {
+                const fieldData = JSON.parse(fields);
+                const result = await graphClient.createListItem(siteId, listId, fieldData);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(
+                                {
+                                    success: true,
+                                    message: "List item created successfully",
+                                    itemId: result.id,
+                                    fields: result.fields,
+                                },
+                                null,
+                                2
+                            ),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error creating list item: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_sharepoint_update_list_item
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_sharepoint_update_list_item",
+        "Updates an existing item in a SharePoint list. Provide the fields to update as a JSON object.",
+        {
+            siteId: z.string().describe("The ID of the SharePoint site."),
+            listId: z.string().describe("The ID or display name of the SharePoint list."),
+            itemId: z.string().describe("The ID of the list item to update."),
+            fields: z.string().describe("JSON string of fields to update. Example: '{\"Status\":\"Approved\"}'"),
+        },
+        async ({ siteId, listId, itemId, fields }) => {
+            try {
+                const fieldData = JSON.parse(fields);
+                const result = await graphClient.updateListItem(siteId, listId, itemId, fieldData);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(
+                                {
+                                    success: true,
+                                    message: "List item updated successfully",
+                                    itemId,
+                                    updatedFields: result,
+                                },
+                                null,
+                                2
+                            ),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error updating list item: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_sharepoint_delete_list_item
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_sharepoint_delete_list_item",
+        "Deletes an item from a SharePoint list. This action is permanent.",
+        {
+            siteId: z.string().describe("The ID of the SharePoint site."),
+            listId: z.string().describe("The ID or display name of the SharePoint list."),
+            itemId: z.string().describe("The ID of the list item to delete."),
+        },
+        async ({ siteId, listId, itemId }) => {
+            try {
+                await graphClient.deleteListItem(siteId, listId, itemId);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(
+                                {
+                                    success: true,
+                                    message: "List item deleted successfully",
+                                    itemId,
+                                },
+                                null,
+                                2
+                            ),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error deleting list item: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
 }
