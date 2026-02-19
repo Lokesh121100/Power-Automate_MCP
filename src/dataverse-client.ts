@@ -580,6 +580,7 @@ export class DataverseClient {
         const flowDef = {
             name: name,
             description: description,
+            type: 1,
             category: 5,
             clientdata: clientData,
             statecode: 0,

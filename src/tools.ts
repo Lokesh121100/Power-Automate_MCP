@@ -1,11 +1,12 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { DataverseClient, DataverseRecord } from "./dataverse-client.js";
+import { GraphClient } from "./graph-client.js";
 
 /**
  * Registers all Power Apps / Dataverse MCP tools on the server.
  */
-export function registerTools(server: McpServer, client: DataverseClient): void {
+export function registerTools(server: McpServer, client: DataverseClient, graphClient: GraphClient): void {
 
     // ─────────────────────────────────────────────
     // Tool 1: list_tables
@@ -897,6 +898,98 @@ export function registerTools(server: McpServer, client: DataverseClient): void 
             } catch (error) {
                 return {
                     content: [{ type: "text" as const, text: `Error publishing: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
+
+    // ═════════════════════════════════════════════
+    // SHAREPOINT TOOLS
+    // ═════════════════════════════════════════════
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_sharepoint_list_sites
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_sharepoint_list_sites",
+        "Lists all SharePoint sites in the tenant. Supports searching.",
+        {
+            search: z.string().optional().describe("Optional search query to filter sites (e.g., 'Project')"),
+        },
+        async ({ search }) => {
+            try {
+                const sites = await graphClient.listSites(search);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(sites, null, 2),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error listing sites: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_sharepoint_list_drives
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_sharepoint_list_drives",
+        "Lists document libraries (Drives) for a specific SharePoint site.",
+        {
+            siteId: z.string().describe("The ID of the SharePoint site."),
+        },
+        async ({ siteId }) => {
+            try {
+                const drives = await graphClient.listDrives(siteId);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(drives, null, 2),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error listing drives: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_sharepoint_list_items
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_sharepoint_list_items",
+        "Lists files and folders in a SharePoint drive (document library).",
+        {
+            driveId: z.string().describe("The ID of the drive/document library."),
+            itemId: z.string().optional().describe("Optional. The ID of the folder to list contents of. If omitted, lists root."),
+        },
+        async ({ driveId, itemId }) => {
+            try {
+                const items = await graphClient.listDriveItems(driveId, itemId);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(items, null, 2),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error listing items: ${error instanceof Error ? error.message : String(error)}` }],
                     isError: true,
                 };
             }

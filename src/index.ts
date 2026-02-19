@@ -4,6 +4,10 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { config } from "dotenv";
 import { DataverseAuth } from "./auth.js";
+export * from "./auth.js";
+export * from "./dataverse-client.js";
+export * from "./graph-client.js";
+import { GraphClient } from "./graph-client.js";
 import { DataverseClient } from "./dataverse-client.js";
 import { registerTools } from "./tools.js";
 
@@ -57,6 +61,7 @@ async function main(): Promise<void> {
     // Set up authentication and Dataverse client
     const auth = new DataverseAuth(tenantId, clientId, clientSecret, dataverseUrl);
     const dataverseClient = new DataverseClient(auth, dataverseUrl);
+    const graphClient = new GraphClient(auth); // Initialize Graph Client
 
     // Create MCP server
     const server = new McpServer({
@@ -65,7 +70,7 @@ async function main(): Promise<void> {
     });
 
     // Register all tools
-    registerTools(server, dataverseClient);
+    registerTools(server, dataverseClient, graphClient);
 
     // Connect via stdio transport (standard for MCP)
     const transport = new StdioServerTransport();

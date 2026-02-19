@@ -17,13 +17,14 @@ export class DataverseAuth {
     }
 
     /**
-     * Gets a valid access token for Dataverse Web API calls.
-     * The Azure Identity SDK handles token caching and refresh automatically.
+     * Gets a valid access token for Dataverse or other Azure resources.
+     * @param scope - Optional scope override. Defaults to Dataverse scope.
      */
-    async getAccessToken(): Promise<string> {
-        const tokenResponse = await this.credential.getToken(this.scope);
+    async getAccessToken(scope?: string): Promise<string> {
+        const tokenScope = scope || this.scope;
+        const tokenResponse = await this.credential.getToken(tokenScope);
         if (!tokenResponse?.token) {
-            throw new Error("Failed to acquire access token for Dataverse. Check your Azure AD credentials.");
+            throw new Error(`Failed to acquire access token for scope ${tokenScope}. Check your credentials.`);
         }
         return tokenResponse.token;
     }
