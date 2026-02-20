@@ -162,3 +162,4 @@ export class GraphClient {
         await this.request("DELETE", `/sites/${siteId}/lists/${listId}/items/${itemId}`);
     }
 }
+

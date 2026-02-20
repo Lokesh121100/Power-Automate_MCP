@@ -1223,4 +1223,109 @@ export function registerTools(server: McpServer, client: DataverseClient, graphC
             }
         }
     );
+
+    // ═════════════════════════════════════════════
+    // POWER APPS MANAGEMENT TOOLS (via Dataverse)
+    // ═════════════════════════════════════════════
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_powerapps_list_canvas_apps
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_powerapps_list_canvas_apps",
+        "Lists all Power Apps canvas apps in the environment. Returns app names, IDs, status, and creation dates.",
+        {},
+        async () => {
+            try {
+                const result = await client.getRecords("canvasapps", {
+                    select: "name,displayname,status,description",
+                });
+                const apps = (result.value || []).map((app: any) => ({
+                    name: app.displayname || app.name,
+                    canvasappid: app.canvasappid,
+                    status: app.status,
+                    description: app.description || "",
+                }));
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify({ count: apps.length, apps }, null, 2),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error listing canvas apps: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_powerapps_get_canvas_app
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_powerapps_get_canvas_app",
+        "Gets detailed information about a specific Power Apps canvas app by its ID.",
+        {
+            appId: z.string().describe("The canvas app ID (GUID) to retrieve."),
+        },
+        async ({ appId }) => {
+            try {
+                const app = await client.getRecord("canvasapps", appId);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(app, null, 2),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error getting canvas app: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
+
+    // ─────────────────────────────────────────────
+    // Tool: mcp_powerapps_delete_canvas_app
+    // ─────────────────────────────────────────────
+    server.tool(
+        "mcp_powerapps_delete_canvas_app",
+        "Deletes a Power Apps canvas app. This action is permanent and cannot be undone.",
+        {
+            appId: z.string().describe("The canvas app ID (GUID) to delete."),
+        },
+        async ({ appId }) => {
+            try {
+                await client.deleteRecord("canvasapps", appId);
+                return {
+                    content: [
+                        {
+                            type: "text" as const,
+                            text: JSON.stringify(
+                                {
+                                    success: true,
+                                    message: "Canvas app deleted successfully",
+                                    appId,
+                                },
+                                null,
+                                2
+                            ),
+                        },
+                    ],
+                };
+            } catch (error) {
+                return {
+                    content: [{ type: "text" as const, text: `Error deleting canvas app: ${error instanceof Error ? error.message : String(error)}` }],
+                    isError: true,
+                };
+            }
+        }
+    );
 }
