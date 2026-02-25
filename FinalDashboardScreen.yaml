@@ -1,10 +1,10 @@
 Screens:
-  Screen1_3:
+  Screen1_4:
     Properties:
       Fill: =RGBA(249, 250, 251, 1)
       LoadingSpinnerColor: =RGBA(37, 99, 235, 1)
     Children:
-      - HeaderContainer_3:
+      - HeaderContainer_4:
           Control: GroupContainer@1.4.0
           Variant: ManualLayout
           Properties:
@@ -12,7 +12,7 @@ Screens:
             Height: =64
             Width: =Parent.Width
           Children:
-            - DividerLogo:
+            - DividerLogo_1:
                 Control: Rectangle@2.3.0
                 Properties:
                   Fill: =RGBA(31, 41, 55, 1)
@@ -20,7 +20,7 @@ Screens:
                   Width: =2
                   X: =180
                   Y: =12
-            - LblAppTitle_3:
+            - LblAppTitle_4:
                 Control: Label@2.5.1
                 Properties:
                   Color: =RGBA(15, 51, 117, 1)
@@ -35,12 +35,12 @@ Screens:
                 Control: Classic/Icon@2.5.0
                 Properties:
                   Color: =RGBA(15, 51, 117, 1)
+                  Height: =40
                   Icon: =Icon.Home
-                  Height: =28
-                  Width: =28
-                  X: =343
-                  Y: =18
-            - ImgUserProfile_3:
+                  Width: =45
+                  X: =938
+                  Y: =12
+            - ImgUserProfile_4:
                 Control: Image@2.2.3
                 Properties:
                   Height: =40
@@ -52,17 +52,17 @@ Screens:
                   Width: =40
                   X: =Parent.Width - 55
                   Y: =12
-            - LblUserName_3:
+            - LblUserName_4:
                 Control: Label@2.5.1
                 Properties:
                   Align: =Align.Right
                   Color: =RGBA(55, 65, 81, 1)
                   FontWeight: =FontWeight.Semibold
                   Height: =64
-                  Text: =User().FullName
+                  Text: ="Demo"
                   Width: =200
                   X: =Parent.Width - 265
-            - Image2:
+            - Image2_1:
                 Control: Image@2.2.3
                 Properties:
                   BorderColor: =RGBA(0, 18, 107, 1)
@@ -74,12 +74,23 @@ Screens:
             - HorizontalRedLine:
                 Control: Rectangle@2.3.0
                 Properties:
-                  Fill: =RGBA(166, 38, 38, 1) # Dark Red to match A*STAR
+                  Fill: =RGBA(166, 38, 38, 1)
                   Height: =2
                   Width: =Parent.Width
-                  X: =0
                   Y: =62
-      - TabContainer_3:
+            - Label1:
+                Control: Label@2.5.1
+                Properties:
+                  BorderColor: |+
+                    =App.Theme.Colors.Darker40
+                  Font: =Font.'Open Sans'
+                  FontWeight: =FontWeight.Semibold
+                  Height: =34
+                  Text: ="Demo"
+                  Width: =103
+                  X: =983
+                  Y: =18
+      - TabContainer_4:
           Control: GroupContainer@1.4.0
           Variant: ManualLayout
           Properties:
@@ -102,14 +113,13 @@ Screens:
                   RadiusTopRight: =6
                   Width: =150
                   X: =15
-                  Y: =0
                 Children:
                   - IcoAddTech:
                       Control: Classic/Icon@2.5.0
                       Properties:
                         Color: =If(locCurrentTab = "Add Technology", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
-                        Icon: =Icon.Add
                         Height: =28
+                        Icon: =Icon.Add
                         Width: =28
                         X: =61
                         Y: =10
@@ -123,7 +133,6 @@ Screens:
                         Height: =24
                         Size: =11
                         Text: ="Add Technology"
-                        Width: =150
                         Y: =40
                   - OverlayAddTech:
                       Control: Classic/Button@2.2.0
@@ -152,14 +161,13 @@ Screens:
                   RadiusTopRight: =6
                   Width: =130
                   X: =175
-                  Y: =0
                 Children:
                   - IcoDraft:
                       Control: Classic/Icon@2.5.0
                       Properties:
                         Color: =If(locCurrentTab = "Draft", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
-                        Icon: =Icon.Tag
                         Height: =28
+                        Icon: =Icon.Tag
                         Width: =28
                         X: =51
                         Y: =10
@@ -202,14 +210,13 @@ Screens:
                   RadiusTopRight: =6
                   Width: =170
                   X: =315
-                  Y: =0
                 Children:
                   - IcoPending:
                       Control: Classic/Icon@2.5.0
                       Properties:
                         Color: =If(locCurrentTab = "Pending Application", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
-                        Icon: =Icon.DetailList
                         Height: =28
+                        Icon: =Icon.DetailList
                         Width: =28
                         X: =71
                         Y: =10
@@ -252,14 +259,13 @@ Screens:
                   RadiusTopRight: =6
                   Width: =180
                   X: =495
-                  Y: =0
                 Children:
                   - IcoSubmitted:
                       Control: Classic/Icon@2.5.0
                       Properties:
                         Color: =If(locCurrentTab = "Submitted Applications", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
-                        Icon: =Icon.Document
                         Height: =28
+                        Icon: =Icon.Document
                         Width: =28
                         X: =76
                         Y: =10
@@ -302,14 +308,13 @@ Screens:
                   RadiusTopRight: =6
                   Width: =150
                   X: =685
-                  Y: =0
                 Children:
                   - IcoSearch:
                       Control: Classic/Icon@2.5.0
                       Properties:
                         Color: =If(locCurrentTab = "Search Centre", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
-                        Icon: =Icon.Search
                         Height: =28
+                        Icon: =Icon.Search
                         Width: =28
                         X: =61
                         Y: =10
@@ -323,7 +328,6 @@ Screens:
                         Height: =24
                         Size: =11
                         Text: ="Search Centre"
-                        Width: =150
                         Y: =40
                   - OverlaySearch:
                       Control: Classic/Button@2.2.0
@@ -338,7 +342,7 @@ Screens:
                         PressedFill: =RGBA(0, 0, 0, 0.1)
                         Text: =""
                         Width: =Parent.Width
-      - DividerLine_3:
+      - DividerLine_4:
           Control: Rectangle@2.3.0
           Properties:
             BorderStyle: =BorderStyle.None
@@ -346,7 +350,7 @@ Screens:
             Height: =1
             Width: =Parent.Width
             Y: =134
-      - ViewContainer_3:
+      - ViewContainer_4:
           Control: GroupContainer@1.4.0
           Variant: ManualLayout
           Properties:
@@ -354,7 +358,7 @@ Screens:
             Width: =Parent.Width
             Y: =135
           Children:
-            - LblPlaceholder_3:
+            - LblPlaceholder_4:
                 Control: Label@2.5.1
                 Properties:
                   Align: =Align.Center
@@ -367,7 +371,7 @@ Screens:
                   Visible: =locCurrentTab <> "Add Technology" And locCurrentTab <> "Draft" And locCurrentTab <> "Pending Application" And locCurrentTab <> "Submitted Applications" And locCurrentTab <> "Search Centre"
                   Width: =Parent.Width
                   Y: =240
-      - SearchInputBar_3:
+      - SearchInputBar_4:
           Control: Classic/TextInput@2.3.2
           Properties:
             BorderColor: =RGBA(209, 213, 219, 1)
@@ -389,21 +393,21 @@ Screens:
             Width: =800
             X: =40
             Y: =150
-      - GallerySearch_3:
+      - GallerySearch_4:
           Control: Gallery@2.15.0
           Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
           Properties:
             BorderColor: =RGBA(0, 0, 0, 0)
             Height: =500
             Items: |
-              =Filter('IP Technologies', StartsWith(Title, SearchInputBar_3.Text) Or StartsWith(Inventor, SearchInputBar_3.Text))
+              =Filter('IP Technologies', StartsWith(Title, SearchInputBar_4.Text) Or StartsWith(Inventor, SearchInputBar_4.Text))
             TemplatePadding: =8
             Visible: =locCurrentTab = "Search Centre" And Not(IsBlank(locCurrentTab))
             Width: =820
             X: =40
             Y: =220
           Children:
-            - ItemBackdropSearch_2:
+            - ItemBackdropSearch_3:
                 Control: Rectangle@2.3.0
                 Properties:
                   Fill: =RGBA(255, 255, 255, 1)
@@ -412,7 +416,7 @@ Screens:
                   Width: =Parent.TemplateWidth - 10
                   X: =5
                   Y: =4
-            - ImageSearch_3:
+            - ImageSearch_4:
                 Control: Image@2.2.3
                 Properties:
                   BorderColor: =RGBA(0, 0, 0, 0)
@@ -425,7 +429,7 @@ Screens:
                   Width: =60
                   X: =20
                   Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
-            - TitleSearch_3:
+            - TitleSearch_4:
                 Control: Label@2.5.1
                 Properties:
                   Color: =RGBA(17, 24, 39, 1)
@@ -443,7 +447,7 @@ Screens:
                   Width: =Parent.TemplateWidth - 173
                   X: =100
                   Y: =20
-            - SubtitleSearch_3:
+            - SubtitleSearch_4:
                 Control: Label@2.5.1
                 Properties:
                   Color: =RGBA(107, 114, 128, 1)
@@ -458,10 +462,10 @@ Screens:
                   Text: |
                     =ThisItem.Inventor & " • " & ThisItem.Status
                   VerticalAlign: =VerticalAlign.Top
-                  Width: =TitleSearch_3.Width
-                  X: =TitleSearch_3.X
-                  Y: =TitleSearch_3.Y + 26
-            - NextArrowSearch_3:
+                  Width: =TitleSearch_4.Width
+                  X: =TitleSearch_4.X
+                  Y: =TitleSearch_4.Y + 26
+            - NextArrowSearch_4:
                 Control: Classic/Icon@2.5.0
                 Properties:
                   AccessibleLabel: =Self.Tooltip
@@ -479,7 +483,7 @@ Screens:
                   Width: =40
                   X: =Parent.TemplateWidth - Self.Width - 16
                   Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
-      - Gallery1_3:
+      - Gallery1_4:
           Control: Gallery@2.15.0
           Variant: BrowseLayout_Vertical_TwoTextOneImageVariant_ver5.0
           Properties:
@@ -498,7 +502,7 @@ Screens:
             X: =40
             Y: =140
           Children:
-            - ItemBackdrop1_2:
+            - ItemBackdrop1_3:
                 Control: Rectangle@2.3.0
                 Properties:
                   Fill: =RGBA(255, 255, 255, 1)
@@ -507,7 +511,7 @@ Screens:
                   Width: =Parent.TemplateWidth - 10
                   X: =5
                   Y: =4
-            - Image1_3:
+            - Image1_4:
                 Control: Image@2.2.3
                 Properties:
                   BorderColor: =RGBA(0, 0, 0, 0)
@@ -520,7 +524,7 @@ Screens:
                   Width: =60
                   X: =20
                   Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
-            - Title1_3:
+            - Title1_4:
                 Control: Label@2.5.1
                 Properties:
                   Color: =RGBA(17, 24, 39, 1)
@@ -538,7 +542,7 @@ Screens:
                   Width: =Parent.TemplateWidth - 173
                   X: =100
                   Y: =20
-            - Subtitle1_3:
+            - Subtitle1_4:
                 Control: Label@2.5.1
                 Properties:
                   Color: =RGBA(107, 114, 128, 1)
@@ -552,10 +556,10 @@ Screens:
                   PaddingTop: =0
                   Text: =ThisItem.InventorName
                   VerticalAlign: =VerticalAlign.Top
-                  Width: =Title1_3.Width
-                  X: =Title1_3.X
-                  Y: =Title1_3.Y + 26
-            - NextArrow1_3:
+                  Width: =Title1_4.Width
+                  X: =Title1_4.X
+                  Y: =Title1_4.Y + 26
+            - NextArrow1_4:
                 Control: Classic/Icon@2.5.0
                 Properties:
                   AccessibleLabel: =Self.Tooltip
@@ -573,7 +577,7 @@ Screens:
                   Width: =40
                   X: =Parent.TemplateWidth - Self.Width - 16
                   Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
-      - FormContainerRectangle_2:
+      - FormContainerRectangle_3:
           Control: Rectangle@2.3.0
           Properties:
             Fill: =RGBA(255, 255, 255, 1)
@@ -582,7 +586,7 @@ Screens:
             Width: =800
             X: =40
             Y: =140
-      - Form1_3:
+      - Form1_4:
           Control: Form@2.4.4
           Variant: Classic
           Layout: Vertical
@@ -596,7 +600,7 @@ Screens:
             X: =60
             Y: =160
           Children:
-            - Title_DataCard1_3:
+            - Title_DataCard1_4:
                 Control: TypedDataCard@1.0.7
                 Variant: ClassicTextualEdit
                 IsLocked: true
@@ -607,12 +611,12 @@ Screens:
                   DisplayName: =DataSourceInfo([@'IP Technologies'],DataSourceInfo.DisplayName,Title)
                   MaxLength: =DataSourceInfo(%DATACARD_DATASOURCE_NAME.ID%, %DataSourceInfo.RESERVED%.MaxLength, '%DATACARD_FIELD_NAME.ID%')
                   Required: =true
-                  Update: =DataCardValue1_3.Text
+                  Update: =DataCardValue1_4.Text
                   Width: =350
                   X: =0
                   Y: =0
                 Children:
-                  - DataCardKey1_3:
+                  - DataCardKey1_4:
                       Control: Label@2.5.1
                       MetadataKey: FieldName
                       Properties:
@@ -624,7 +628,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =5
-                  - DataCardValue1_3:
+                  - DataCardValue1_4:
                       Control: Classic/TextInput@2.3.2
                       MetadataKey: FieldValue
                       Properties:
@@ -639,7 +643,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =35
-                  - ErrorMessage1_3:
+                  - ErrorMessage1_4:
                       Control: Label@2.5.1
                       MetadataKey: ErrorMessage
                       Properties:
@@ -647,8 +651,8 @@ Screens:
                         Text: =Parent.Error
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         X: =30
-                        Y: =DataCardValue1_3.Y + DataCardValue1_3.Height
-                  - StarVisible1_3:
+                        Y: =DataCardValue1_4.Y + DataCardValue1_4.Height
+                  - StarVisible1_4:
                       Control: Label@2.5.1
                       MetadataKey: FieldRequired
                       Properties:
@@ -656,7 +660,7 @@ Screens:
                         Text: ="*"
                         Visible: =And(Parent.Required, Parent.DisplayMode=DisplayMode.Edit)
                         Y: =5
-            - Description_DataCard1_3:
+            - Description_DataCard1_4:
                 Control: TypedDataCard@1.0.7
                 Variant: ClassicTextualEdit
                 IsLocked: true
@@ -667,12 +671,12 @@ Screens:
                   DisplayName: =DataSourceInfo([@'IP Technologies'],DataSourceInfo.DisplayName,Description)
                   MaxLength: =DataSourceInfo(%DATACARD_DATASOURCE_NAME.ID%, %DataSourceInfo.RESERVED%.MaxLength, '%DATACARD_FIELD_NAME.ID%')
                   Required: =false
-                  Update: =DataCardValue2_3.Text
+                  Update: =DataCardValue2_4.Text
                   Width: =350
                   X: =0
                   Y: =0
                 Children:
-                  - DataCardKey2_3:
+                  - DataCardKey2_4:
                       Control: Label@2.5.1
                       MetadataKey: FieldName
                       Properties:
@@ -684,7 +688,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =5
-                  - DataCardValue2_3:
+                  - DataCardValue2_4:
                       Control: Classic/TextInput@2.3.2
                       MetadataKey: FieldValue
                       Properties:
@@ -699,7 +703,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =35
-                  - ErrorMessage2_3:
+                  - ErrorMessage2_4:
                       Control: Label@2.5.1
                       MetadataKey: ErrorMessage
                       Properties:
@@ -707,8 +711,8 @@ Screens:
                         Text: =Parent.Error
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         X: =30
-                        Y: =DataCardValue2_3.Y + DataCardValue2_3.Height
-            - InventorName_DataCard1_3:
+                        Y: =DataCardValue2_4.Y + DataCardValue2_4.Height
+            - InventorName_DataCard1_4:
                 Control: TypedDataCard@1.0.7
                 Variant: ClassicTextualEdit
                 IsLocked: true
@@ -719,12 +723,12 @@ Screens:
                   DisplayName: =DataSourceInfo([@'IP Technologies'],DataSourceInfo.DisplayName,InventorName)
                   MaxLength: =DataSourceInfo(%DATACARD_DATASOURCE_NAME.ID%, %DataSourceInfo.RESERVED%.MaxLength, '%DATACARD_FIELD_NAME.ID%')
                   Required: =false
-                  Update: =DataCardValue3_3.Text
+                  Update: =DataCardValue3_4.Text
                   Width: =350
                   X: =0
                   Y: =0
                 Children:
-                  - DataCardKey3_3:
+                  - DataCardKey3_4:
                       Control: Label@2.5.1
                       MetadataKey: FieldName
                       Properties:
@@ -736,7 +740,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =5
-                  - DataCardValue3_3:
+                  - DataCardValue3_4:
                       Control: Classic/TextInput@2.3.2
                       MetadataKey: FieldValue
                       Properties:
@@ -751,7 +755,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =35
-                  - ErrorMessage3_3:
+                  - ErrorMessage3_4:
                       Control: Label@2.5.1
                       MetadataKey: ErrorMessage
                       Properties:
@@ -759,8 +763,8 @@ Screens:
                         Text: =Parent.Error
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         X: =30
-                        Y: =DataCardValue3_3.Y + DataCardValue3_3.Height
-            - ApplicationStatus_DataCard1_3:
+                        Y: =DataCardValue3_4.Y + DataCardValue3_4.Height
+            - ApplicationStatus_DataCard1_4:
                 Control: TypedDataCard@1.0.7
                 Variant: ClassicTextualEdit
                 IsLocked: true
@@ -771,12 +775,12 @@ Screens:
                   DisplayName: =DataSourceInfo([@'IP Technologies'],DataSourceInfo.DisplayName,ApplicationStatus)
                   MaxLength: =DataSourceInfo(%DATACARD_DATASOURCE_NAME.ID%, %DataSourceInfo.RESERVED%.MaxLength, '%DATACARD_FIELD_NAME.ID%')
                   Required: =false
-                  Update: =DataCardValue4_3.Text
+                  Update: =DataCardValue4_4.Text
                   Width: =350
                   X: =0
                   Y: =0
                 Children:
-                  - DataCardKey4_3:
+                  - DataCardKey4_4:
                       Control: Label@2.5.1
                       MetadataKey: FieldName
                       Properties:
@@ -788,7 +792,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =5
-                  - DataCardValue4_3:
+                  - DataCardValue4_4:
                       Control: Classic/TextInput@2.3.2
                       MetadataKey: FieldValue
                       Properties:
@@ -803,7 +807,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =35
-                  - ErrorMessage4_3:
+                  - ErrorMessage4_4:
                       Control: Label@2.5.1
                       MetadataKey: ErrorMessage
                       Properties:
@@ -811,8 +815,8 @@ Screens:
                         Text: =Parent.Error
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         X: =30
-                        Y: =DataCardValue4_3.Y + DataCardValue4_3.Height
-            - FilingDate_DataCard1_3:
+                        Y: =DataCardValue4_4.Y + DataCardValue4_4.Height
+            - FilingDate_DataCard1_4:
                 Control: TypedDataCard@1.0.7
                 Variant: ClassicDateEdit
                 IsLocked: true
@@ -822,12 +826,12 @@ Screens:
                   Default: =ThisItem.FilingDate
                   DisplayName: =DataSourceInfo([@'IP Technologies'],DataSourceInfo.DisplayName,FilingDate)
                   Required: =false
-                  Update: =DataCardValue5_3.SelectedDate
+                  Update: =DataCardValue5_4.SelectedDate
                   Width: =350
                   X: =0
                   Y: =0
                 Children:
-                  - DataCardKey5_3:
+                  - DataCardKey5_4:
                       Control: Label@2.5.1
                       MetadataKey: FieldName
                       Properties:
@@ -839,7 +843,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =5
-                  - DataCardValue5_3:
+                  - DataCardValue5_4:
                       Control: Classic/DatePicker@2.6.0
                       MetadataKey: FieldValue
                       Properties:
@@ -852,7 +856,7 @@ Screens:
                         Width: =Parent.Width - 60
                         X: =30
                         Y: =35
-                  - ErrorMessage5_3:
+                  - ErrorMessage5_4:
                       Control: Label@2.5.1
                       MetadataKey: ErrorMessage
                       Properties:
@@ -860,8 +864,8 @@ Screens:
                         Text: =Parent.Error
                         Visible: =Parent.DisplayMode=DisplayMode.Edit
                         X: =30
-                        Y: =DataCardValue5_3.Y + DataCardValue5_3.Height
-      - BtnSubmitApp_3:
+                        Y: =DataCardValue5_4.Y + DataCardValue5_4.Height
+      - BtnSubmitApp_4:
           Control: Classic/Button@2.2.0
           Properties:
             Color: =RGBA(255, 255, 255, 1)
@@ -869,10 +873,10 @@ Screens:
             Height: =48
             HoverFill: =RGBA(29, 78, 216, 1)
             OnSelect: |
-              =SubmitForm(Form1_3);
+              =SubmitForm(Form1_4);
               RequestHide();
               Notify("Application saved successfully!", NotificationType.Success);
-              NewForm(Form1_3);
+              NewForm(Form1_4);
             RadiusBottomLeft: =8
             RadiusBottomRight: =8
             RadiusTopLeft: =8
@@ -882,7 +886,7 @@ Screens:
             Width: =200
             X: =60
             Y: =630
-      - ModalContainer_2:
+      - ModalContainer_3:
           Control: GroupContainer@1.4.0
           Variant: ManualLayout
           Properties:
@@ -890,7 +894,7 @@ Screens:
             Visible: =locShowModal
             Width: =Parent.Width
           Children:
-            - ModalBackgroundOverlay_2:
+            - ModalBackgroundOverlay_3:
                 Control: Rectangle@2.3.0
                 Properties:
                   Fill: =RGBA(17, 24, 39, 0.6)
@@ -902,11 +906,11 @@ Screens:
                 Properties:
                   Fill: =RGBA(255, 255, 255, 1)
                   Height: =520
-                  Width: =800
                   RadiusBottomLeft: =16
                   RadiusBottomRight: =16
                   RadiusTopLeft: =16
                   RadiusTopRight: =16
+                  Width: =800
                   X: =(Parent.Width - 800) / 2
                   Y: =(Parent.Height - 520) / 2
                 Children:
@@ -914,10 +918,12 @@ Screens:
                       Control: Classic/Icon@2.5.0
                       Properties:
                         Color: =RGBA(107, 114, 128, 1)
+                        Height: =35
                         HoverColor: =RGBA(17, 24, 39, 1)
                         Icon: =Icon.Cancel
                         OnSelect: =Set(locShowModal, false)
-                        X: =740
+                        Width: =24
+                        X: =736
                         Y: =20
                   - ModalTitleHeader:
                       Control: Label@2.5.1
@@ -925,8 +931,10 @@ Screens:
                         Color: =RGBA(17, 24, 39, 1)
                         Font: =Font.'Segoe UI'
                         FontWeight: =FontWeight.Semibold
+                        Height: =30
                         Size: =18
                         Text: ="View / Edit Application"
+                        Width: =282
                         X: =40
                         Y: =25
                   - FormEditModal:
@@ -935,9 +943,8 @@ Screens:
                       Layout: Vertical
                       Properties:
                         DataSource: ='IP Technologies'
-                        DefaultMode: =FormMode.Edit
-                        Item: =locSelectedRecord
                         Height: =400
+                        Item: =locSelectedRecord
                         Width: =720
                         X: =40
                         Y: =70
@@ -951,9 +958,12 @@ Screens:
                               DataField: ="Title"
                               Default: =ThisItem.Title
                               DisplayName: =DataSourceInfo([@'IP Technologies'],DataSourceInfo.DisplayName,Title)
+                              MaxLength: =DataSourceInfo(%DATACARD_DATASOURCE_NAME.ID%, %DataSourceInfo.RESERVED%.MaxLength, '%DATACARD_FIELD_NAME.ID%')
                               Required: =true
                               Update: =DataCardValueModal1.Text
                               Width: =350
+                              X: =0
+                              Y: =0
                             Children:
                               - DataCardKeyModal1:
                                   Control: Label@2.5.1
@@ -965,8 +975,6 @@ Screens:
                                     Height: =30
                                     Text: =Parent.DisplayName
                                     Width: =Parent.Width - 60
-                                    X: =0
-                                    Y: =0
                               - DataCardValueModal1:
                                   Control: Classic/TextInput@2.3.2
                                   MetadataKey: FieldValue
@@ -979,7 +987,7 @@ Screens:
                                     RadiusTopLeft: =8
                                     RadiusTopRight: =8
                                     Width: =Parent.Width - 60
-                                    X: =0
+                                    X: =8
                                     Y: =30
                         - ApplicationStatus_DataCardModal:
                             Control: TypedDataCard@1.0.7
@@ -990,8 +998,12 @@ Screens:
                               DataField: ="ApplicationStatus"
                               Default: =ThisItem.ApplicationStatus
                               DisplayName: =DataSourceInfo([@'IP Technologies'],DataSourceInfo.DisplayName,ApplicationStatus)
+                              MaxLength: =DataSourceInfo(%DATACARD_DATASOURCE_NAME.ID%, %DataSourceInfo.RESERVED%.MaxLength, '%DATACARD_FIELD_NAME.ID%')
+                              Required: =false
                               Update: =DataCardValueModal4.Text
                               Width: =350
+                              X: =0
+                              Y: =0
                             Children:
                               - DataCardKeyModal4:
                                   Control: Label@2.5.1
@@ -1003,8 +1015,6 @@ Screens:
                                     Height: =30
                                     Text: =Parent.DisplayName
                                     Width: =Parent.Width - 60
-                                    X: =0
-                                    Y: =0
                               - DataCardValueModal4:
                                   Control: Classic/TextInput@2.3.2
                                   MetadataKey: FieldValue
@@ -1017,25 +1027,22 @@ Screens:
                                     RadiusTopLeft: =8
                                     RadiusTopRight: =8
                                     Width: =Parent.Width - 60
-                                    X: =0
                                     Y: =30
                   - BtnUpdateDetailedModal:
                       Control: Classic/Button@2.2.0
                       Properties:
                         Color: =RGBA(255, 255, 255, 1)
                         Fill: =RGBA(37, 99, 235, 1)
-                        HoverFill: =RGBA(29, 78, 216, 1)
-                        FontWeight: =FontWeight.Semibold
-                        RadiusBottomLeft: =8
-                        RadiusBottomRight: =8
-                        RadiusTopLeft: =8
-                        RadiusTopRight: =8
                         Height: =48
+                        HoverFill: =RGBA(29, 78, 216, 1)
                         OnSelect: |
                           =SubmitForm(FormEditModal);
                           Set(locShowModal, false);
                           Notify("Item Updated", NotificationType.Success);
+                        RadiusBottomLeft: =8
+                        RadiusBottomRight: =8
+                        RadiusTopLeft: =8
+                        RadiusTopRight: =8
                         Text: ="Update Status"
-                        Width: =160
                         X: =40
                         Y: =440
