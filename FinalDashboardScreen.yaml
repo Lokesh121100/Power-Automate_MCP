@@ -75,99 +75,260 @@ Screens:
           Variant: ManualLayout
           Properties:
             Fill: =RGBA(255, 255, 255, 1)
-            Height: =60
+            Height: =70
             Width: =Parent.Width
             Y: =64
           Children:
-            - BtnAddTech_3:
-                Control: Classic/Button@2.2.0
+            - TabAddTech_3:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
                 Properties:
-                  Color: =If(locCurrentTab = "Add Technology", RGBA(255, 255, 255, 1), RGBA(55, 65, 81, 1))
-                  Fill: =If(locCurrentTab = "Add Technology", RGBA(37, 99, 235, 1), RGBA(255, 255, 255, 0))
-                  FontWeight: =If(locCurrentTab = "Add Technology", FontWeight.Semibold, FontWeight.Normal)
-                  Height: =44
-                  HoverColor: =If(locCurrentTab = "Add Technology", RGBA(255, 255, 255, 1), RGBA(37, 99, 235, 1))
-                  HoverFill: =If(locCurrentTab = "Add Technology", RGBA(29, 78, 216, 1), RGBA(239, 246, 255, 1))
-                  OnSelect: =Set(locCurrentTab, "Add Technology")
-                  RadiusBottomLeft: =8
-                  RadiusBottomRight: =8
-                  RadiusTopLeft: =8
-                  RadiusTopRight: =8
-                  Text: ="Add Technology"
-                  Width: =185
+                  BorderColor: =RGBA(71, 85, 105, 1)
+                  BorderThickness: =1
+                  Fill: =If(locCurrentTab = "Add Technology", RGBA(224, 242, 254, 1), RGBA(240, 249, 255, 1))
+                  Height: =70
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  Width: =150
                   X: =15
-                  Y: =8
-            - BtnDraft_3:
-                Control: Classic/Button@2.2.0
+                  Y: =0
+                Children:
+                  - IcoAddTech:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        Color: =If(locCurrentTab = "Add Technology", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
+                        Icon: =Icon.Add
+                        Height: =28
+                        Width: =28
+                        X: =61
+                        Y: =10
+                  - LblAddTech:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        Color: =If(locCurrentTab = "Add Technology", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =If(locCurrentTab = "Add Technology", FontWeight.Semibold, FontWeight.Normal)
+                        Height: =24
+                        Size: =11
+                        Text: ="Add Technology"
+                        Width: =150
+                        Y: =40
+                  - OverlayAddTech:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =0
+                        Color: =RGBA(0, 0, 0, 0)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =Parent.Height
+                        HoverFill: =RGBA(0, 0, 0, 0.05)
+                        OnSelect: =Set(locCurrentTab, "Add Technology")
+                        PressedFill: =RGBA(0, 0, 0, 0.1)
+                        Text: =""
+                        Width: =Parent.Width
+            - TabDraft_3:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
                 Properties:
-                  Color: =If(locCurrentTab = "Draft", RGBA(255, 255, 255, 1), RGBA(55, 65, 81, 1))
-                  Fill: =If(locCurrentTab = "Draft", RGBA(37, 99, 235, 1), RGBA(255, 255, 255, 0))
-                  FontWeight: =If(locCurrentTab = "Draft", FontWeight.Semibold, FontWeight.Normal)
-                  Height: =44
-                  HoverColor: =If(locCurrentTab = "Draft", RGBA(255, 255, 255, 1), RGBA(37, 99, 235, 1))
-                  HoverFill: =If(locCurrentTab = "Draft", RGBA(29, 78, 216, 1), RGBA(239, 246, 255, 1))
-                  OnSelect: =Set(locCurrentTab, "Draft")
-                  RadiusBottomLeft: =8
-                  RadiusBottomRight: =8
-                  RadiusTopLeft: =8
-                  RadiusTopRight: =8
-                  Text: ="Draft"
-                  Width: =110
-                  X: =210
-                  Y: =8
-            - BtnPending_3:
-                Control: Classic/Button@2.2.0
+                  BorderColor: =RGBA(71, 85, 105, 1)
+                  BorderThickness: =1
+                  Fill: =If(locCurrentTab = "Draft", RGBA(224, 242, 254, 1), RGBA(240, 249, 255, 1))
+                  Height: =70
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  Width: =130
+                  X: =175
+                  Y: =0
+                Children:
+                  - IcoDraft:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        Color: =If(locCurrentTab = "Draft", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
+                        Icon: =Icon.Tag
+                        Height: =28
+                        Width: =28
+                        X: =51
+                        Y: =10
+                  - LblDraft:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        Color: =If(locCurrentTab = "Draft", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =If(locCurrentTab = "Draft", FontWeight.Semibold, FontWeight.Normal)
+                        Height: =24
+                        Size: =11
+                        Text: ="Draft"
+                        Width: =130
+                        Y: =40
+                  - OverlayDraft:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =0
+                        Color: =RGBA(0, 0, 0, 0)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =Parent.Height
+                        HoverFill: =RGBA(0, 0, 0, 0.05)
+                        OnSelect: =Set(locCurrentTab, "Draft")
+                        PressedFill: =RGBA(0, 0, 0, 0.1)
+                        Text: =""
+                        Width: =Parent.Width
+            - TabPending_3:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
                 Properties:
-                  Color: =If(locCurrentTab = "Pending Application", RGBA(255, 255, 255, 1), RGBA(55, 65, 81, 1))
-                  Fill: =If(locCurrentTab = "Pending Application", RGBA(37, 99, 235, 1), RGBA(255, 255, 255, 0))
-                  FontWeight: =If(locCurrentTab = "Pending Application", FontWeight.Semibold, FontWeight.Normal)
-                  Height: =44
-                  HoverColor: =If(locCurrentTab = "Pending Application", RGBA(255, 255, 255, 1), RGBA(37, 99, 235, 1))
-                  HoverFill: =If(locCurrentTab = "Pending Application", RGBA(29, 78, 216, 1), RGBA(239, 246, 255, 1))
-                  OnSelect: =Set(locCurrentTab, "Pending Application")
-                  RadiusBottomLeft: =8
-                  RadiusBottomRight: =8
-                  RadiusTopLeft: =8
-                  RadiusTopRight: =8
-                  Text: ="Pending Application"
-                  Width: =195
-                  X: =330
-                  Y: =8
-            - BtnSubmitted_3:
-                Control: Classic/Button@2.2.0
+                  BorderColor: =RGBA(71, 85, 105, 1)
+                  BorderThickness: =1
+                  Fill: =If(locCurrentTab = "Pending Application", RGBA(224, 242, 254, 1), RGBA(240, 249, 255, 1))
+                  Height: =70
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  Width: =170
+                  X: =315
+                  Y: =0
+                Children:
+                  - IcoPending:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        Color: =If(locCurrentTab = "Pending Application", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
+                        Icon: =Icon.DetailList
+                        Height: =28
+                        Width: =28
+                        X: =71
+                        Y: =10
+                  - LblPending:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        Color: =If(locCurrentTab = "Pending Application", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =If(locCurrentTab = "Pending Application", FontWeight.Semibold, FontWeight.Normal)
+                        Height: =24
+                        Size: =11
+                        Text: ="Pending Application"
+                        Width: =170
+                        Y: =40
+                  - OverlayPending:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =0
+                        Color: =RGBA(0, 0, 0, 0)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =Parent.Height
+                        HoverFill: =RGBA(0, 0, 0, 0.05)
+                        OnSelect: =Set(locCurrentTab, "Pending Application")
+                        PressedFill: =RGBA(0, 0, 0, 0.1)
+                        Text: =""
+                        Width: =Parent.Width
+            - TabSubmitted_3:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
                 Properties:
-                  Color: =If(locCurrentTab = "Submitted Applications", RGBA(255, 255, 255, 1), RGBA(55, 65, 81, 1))
-                  Fill: =If(locCurrentTab = "Submitted Applications", RGBA(37, 99, 235, 1), RGBA(255, 255, 255, 0))
-                  FontWeight: =If(locCurrentTab = "Submitted Applications", FontWeight.Semibold, FontWeight.Normal)
-                  Height: =44
-                  HoverColor: =If(locCurrentTab = "Submitted Applications", RGBA(255, 255, 255, 1), RGBA(37, 99, 235, 1))
-                  HoverFill: =If(locCurrentTab = "Submitted Applications", RGBA(29, 78, 216, 1), RGBA(239, 246, 255, 1))
-                  OnSelect: =Set(locCurrentTab, "Submitted Applications")
-                  RadiusBottomLeft: =8
-                  RadiusBottomRight: =8
-                  RadiusTopLeft: =8
-                  RadiusTopRight: =8
-                  Text: ="Submitted Applications"
-                  Width: =225
-                  X: =537
-                  Y: =8
-            - BtnSearch_3:
-                Control: Classic/Button@2.2.0
+                  BorderColor: =RGBA(71, 85, 105, 1)
+                  BorderThickness: =1
+                  Fill: =If(locCurrentTab = "Submitted Applications", RGBA(224, 242, 254, 1), RGBA(240, 249, 255, 1))
+                  Height: =70
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  Width: =180
+                  X: =495
+                  Y: =0
+                Children:
+                  - IcoSubmitted:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        Color: =If(locCurrentTab = "Submitted Applications", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
+                        Icon: =Icon.Document
+                        Height: =28
+                        Width: =28
+                        X: =76
+                        Y: =10
+                  - LblSubmitted:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        Color: =If(locCurrentTab = "Submitted Applications", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =If(locCurrentTab = "Submitted Applications", FontWeight.Semibold, FontWeight.Normal)
+                        Height: =24
+                        Size: =11
+                        Text: ="Submitted Applications"
+                        Width: =180
+                        Y: =40
+                  - OverlaySubmitted:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =0
+                        Color: =RGBA(0, 0, 0, 0)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =Parent.Height
+                        HoverFill: =RGBA(0, 0, 0, 0.05)
+                        OnSelect: =Set(locCurrentTab, "Submitted Applications")
+                        PressedFill: =RGBA(0, 0, 0, 0.1)
+                        Text: =""
+                        Width: =Parent.Width
+            - TabSearch_3:
+                Control: GroupContainer@1.4.0
+                Variant: ManualLayout
                 Properties:
-                  Color: =If(locCurrentTab = "Search Centre", RGBA(255, 255, 255, 1), RGBA(55, 65, 81, 1))
-                  Fill: =If(locCurrentTab = "Search Centre", RGBA(37, 99, 235, 1), RGBA(255, 255, 255, 0))
-                  FontWeight: =If(locCurrentTab = "Search Centre", FontWeight.Semibold, FontWeight.Normal)
-                  Height: =44
-                  HoverColor: =If(locCurrentTab = "Search Centre", RGBA(255, 255, 255, 1), RGBA(37, 99, 235, 1))
-                  HoverFill: =If(locCurrentTab = "Search Centre", RGBA(29, 78, 216, 1), RGBA(239, 246, 255, 1))
-                  OnSelect: =Set(locCurrentTab, "Search Centre")
-                  RadiusBottomLeft: =8
-                  RadiusBottomRight: =8
-                  RadiusTopLeft: =8
-                  RadiusTopRight: =8
-                  Text: ="Search Centre"
-                  X: =774
-                  Y: =8
+                  BorderColor: =RGBA(71, 85, 105, 1)
+                  BorderThickness: =1
+                  Fill: =If(locCurrentTab = "Search Centre", RGBA(224, 242, 254, 1), RGBA(240, 249, 255, 1))
+                  Height: =70
+                  RadiusBottomLeft: =6
+                  RadiusBottomRight: =6
+                  RadiusTopLeft: =6
+                  RadiusTopRight: =6
+                  Width: =150
+                  X: =685
+                  Y: =0
+                Children:
+                  - IcoSearch:
+                      Control: Classic/Icon@2.5.0
+                      Properties:
+                        Color: =If(locCurrentTab = "Search Centre", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
+                        Icon: =Icon.Search
+                        Height: =28
+                        Width: =28
+                        X: =61
+                        Y: =10
+                  - LblSearchTab:
+                      Control: Label@2.5.1
+                      Properties:
+                        Align: =Align.Center
+                        Color: =If(locCurrentTab = "Search Centre", RGBA(3, 105, 161, 1), RGBA(71, 85, 105, 1))
+                        Font: =Font.'Segoe UI'
+                        FontWeight: =If(locCurrentTab = "Search Centre", FontWeight.Semibold, FontWeight.Normal)
+                        Height: =24
+                        Size: =11
+                        Text: ="Search Centre"
+                        Width: =150
+                        Y: =40
+                  - OverlaySearch:
+                      Control: Classic/Button@2.2.0
+                      Properties:
+                        BorderStyle: =BorderStyle.None
+                        BorderThickness: =0
+                        Color: =RGBA(0, 0, 0, 0)
+                        Fill: =RGBA(0, 0, 0, 0)
+                        Height: =Parent.Height
+                        HoverFill: =RGBA(0, 0, 0, 0.05)
+                        OnSelect: =Set(locCurrentTab, "Search Centre")
+                        PressedFill: =RGBA(0, 0, 0, 0.1)
+                        Text: =""
+                        Width: =Parent.Width
       - DividerLine_3:
           Control: Rectangle@2.3.0
           Properties:
@@ -175,14 +336,14 @@ Screens:
             Fill: =RGBA(229, 231, 235, 1)
             Height: =1
             Width: =Parent.Width
-            Y: =124
+            Y: =134
       - ViewContainer_3:
           Control: GroupContainer@1.4.0
           Variant: ManualLayout
           Properties:
-            Height: =Parent.Height - 125
+            Height: =Parent.Height - 135
             Width: =Parent.Width
-            Y: =125
+            Y: =135
           Children:
             - LblPlaceholder_3:
                 Control: Label@2.5.1
@@ -226,7 +387,7 @@ Screens:
             BorderColor: =RGBA(0, 0, 0, 0)
             Height: =500
             Items: |
-              =Filter('IP Technologies', StartsWith(Title, SearchInputBar_3.Text) Or StartsWith(InventorName, SearchInputBar_3.Text))
+              =Filter('IP Technologies', StartsWith(Title, SearchInputBar_3.Text) Or StartsWith(Inventor, SearchInputBar_3.Text))
             TemplatePadding: =8
             Visible: =locCurrentTab = "Search Centre" And Not(IsBlank(locCurrentTab))
             Width: =820
@@ -286,7 +447,7 @@ Screens:
                   PaddingRight: =0
                   PaddingTop: =0
                   Text: |
-                    =ThisItem.InventorName & " • " & ThisItem.ApplicationStatus
+                    =ThisItem.Inventor & " • " & ThisItem.Status
                   VerticalAlign: =VerticalAlign.Top
                   Width: =TitleSearch_3.Width
                   X: =TitleSearch_3.X
