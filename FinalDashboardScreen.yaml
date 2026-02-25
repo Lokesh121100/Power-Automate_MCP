@@ -23,14 +23,23 @@ Screens:
             - LblAppTitle_3:
                 Control: Label@2.5.1
                 Properties:
-                  Color: =RGBA(31, 41, 55, 1)
+                  Color: =RGBA(15, 51, 117, 1)
                   Font: =Font.'Segoe UI'
                   FontWeight: =FontWeight.Semibold
                   Height: =64
                   Size: =14
                   Text: ="Intellectual Property & Contract Management System"
                   Width: =600
-                  X: =353
+                  X: =383
+            - IcoHome_1:
+                Control: Classic/Icon@2.5.0
+                Properties:
+                  Color: =RGBA(15, 51, 117, 1)
+                  Icon: =Icon.Home
+                  Height: =28
+                  Width: =28
+                  X: =343
+                  Y: =18
             - ImgUserProfile_3:
                 Control: Image@2.2.3
                 Properties:
