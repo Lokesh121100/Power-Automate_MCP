@@ -100,6 +100,15 @@
                   Width: =74
                   X: =983
                   Y: =24
+      - GradientLine_Final:
+          Control: Image@2.2.3
+          Properties:
+            Height: =4
+            Image: |
+              ="data:image/svg+xml;utf8, " & EncodeUrl("<svg width='1366' height='4' viewBox='0 0 1366 4' fill='none' xmlns='http://www.w3.org/2000/svg'><rect width='1366' height='4' fill='url(#grad)'/><defs><linearGradient id='grad' x1='0' y1='0' x2='1366' y2='0' gradientUnits='userSpaceOnUse'><stop stop-color='#3B82F6'/><stop offset='0.25' stop-color='#8B5CF6'/><stop offset='0.5' stop-color='#EC4899'/><stop offset='0.75' stop-color='#EF4444'/><stop offset='0.9' stop-color='#F97316'/><stop offset='1' stop-color='#F97316'/></linearGradient></defs></svg>")
+            ImagePosition: =ImagePosition.Fill
+            Width: =Parent.Width
+            Y: =60
       - TabContainer_14:
           Control: GroupContainer@1.4.0
           Variant: ManualLayout
@@ -1055,15 +1064,6 @@
                         Text: ="Update Status"
                         X: =40
                         Y: =440
-      - GradientLine_Final:
-          Control: Image@2.2.3
-          Properties:
-            Height: =4
-            Image: |
-              ="data:image/svg+xml;utf8, " & EncodeUrl("<svg width='1366' height='4' viewBox='0 0 1366 4' fill='none' xmlns='http://www.w3.org/2000/svg'><rect width='1366' height='4' fill='url(#grad)'/><defs><linearGradient id='grad' x1='0' y1='0' x2='1366' y2='0' gradientUnits='userSpaceOnUse'><stop stop-color='#3B82F6'/><stop offset='0.25' stop-color='#8B5CF6'/><stop offset='0.5' stop-color='#EC4899'/><stop offset='0.75' stop-color='#EF4444'/><stop offset='0.9' stop-color='#F97316'/><stop offset='1' stop-color='#F97316'/></linearGradient></defs></svg>")
-            ImagePosition: =ImagePosition.Fill
-            Width: =Parent.Width
-            Y: =60
       - ProfileMenuContainer_10:
           Control: GroupContainer@1.4.0
           Variant: ManualLayout
